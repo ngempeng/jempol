@@ -98,12 +98,12 @@ clear
 #########################
 # USERNAME
 #rm -f /usr/bin/user
-#username=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $2}')
+#username=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $2}')
 #echo "$username" >/usr/bin/user
 # validity
 #rm -f /usr/bin/e
 #today=`date -d "0 days" +"%Y-%m-%d"`
-#valid=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $3}')
+#valid=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $3}')
 #echo "$valid" >/usr/bin/e
 # DETAIL ORDER
 #username=$(cat /usr/bin/user)
@@ -131,8 +131,8 @@ clear
 #echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
 #echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
 #echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
-#echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN https://wa.me/6285649455626$NC"
-#echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/erfanrinanda$NC"
+#echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN https://wa.me/62818776240$NC"
+#echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/serverpremiumvip$NC"
 #echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
 #sleep 3
 #exit 1
@@ -142,7 +142,7 @@ clear
 #echo -e "\e[32mloading...\e[0m"
 #clear
 # REPO    
-    REPO="https://raw.githubusercontent.com/erfanrinanda/private/master/"
+    REPO="https://raw.githubusercontent.com/ngempeng/jempol/master/"
 
 ####
 start=$(date +%s)
@@ -322,8 +322,8 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 function restart_system() {
-    USRSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $2}')
-    EXPSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/botol/master/khusus | grep $MYIP | awk '{print $3}')
+    USRSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $2}')
+    EXPSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $3}')
     DATEVPS=$(date +'%d/%m/%Y')
     ISP=$(cat /etc/xray/isp)
     TIMEZONE=$(printf '%(%H:%M:%S)T')
@@ -342,8 +342,8 @@ function restart_system() {
 <b> SCRIPT NOTIF </b>
 <code>────────────────────</code>
 <i>Automatic Notifications From Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://wa.me/6285649455626"}]]}' 
-#"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ2","url":"https://wa.me/6287824016438"}]]}'
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://wa.me/62818776240"}]]}' 
+#"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ2","url":"https://wa.me/628xxxxxxxx"}]]}'
     curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 
 }
