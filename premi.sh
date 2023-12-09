@@ -98,12 +98,12 @@ clear
 #########################
 # USERNAME
 #rm -f /usr/bin/user
-#username=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $2}')
+#username=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $2}')
 #echo "$username" >/usr/bin/user
 # validity
 #rm -f /usr/bin/e
 #today=`date -d "0 days" +"%Y-%m-%d"`
-#valid=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $3}')
+#valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $3}')
 #echo "$valid" >/usr/bin/e
 # DETAIL ORDER
 #username=$(cat /usr/bin/user)
@@ -322,8 +322,8 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 function restart_system() {
-    USRSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $2}')
-    EXPSC=$(curl -sS https://raw.githubusercontent.com/ngempeng/jempol/master/khusus | grep $MYIP | awk '{print $3}')
+    USRSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $2}')
+    EXPSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $3}')
     DATEVPS=$(date +'%d/%m/%Y')
     ISP=$(cat /etc/xray/isp)
     TIMEZONE=$(printf '%(%H:%M:%S)T')
