@@ -30,7 +30,7 @@ fun_bar() {
     tput cnorm
 }
 res1() {
-    wget https://raw.githubusercontent.com/ngempeng/botol/master/limit/menu.zip
+    wget https://raw.githubusercontent.com/ngempeng/jempol/master/limit/menu.zip
     unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
