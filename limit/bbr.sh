@@ -1,7 +1,7 @@
 #!/bin/bash
-# Edition : Stable Edition V3.0
-# Auther  : Geo Project
-# (C) Copyright 2023
+# Edition : Stable Edition V15.7.1
+# Author  : Server Premium VIP
+# (C) Copyright 2024
 # =========================================
 
 red='\e[1;31m'
@@ -18,7 +18,7 @@ clear
 #	 menu
 #else
 
-echo -e "Installing TCP BBR Mod By Kyt & Ridwan"
+echo -e "Installing TCP BBR Mod Server Premium VIP"
 echo -e "Please Wait BBR Installation Will Starting . . ."
 sleep 5
 clear
