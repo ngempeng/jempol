@@ -7,7 +7,7 @@ apt install -y && apt update -y && apt upgrade -y && apt install lolcat -y && ge
 ### AKTIFKAN SLOWDNS
 ```
 
-wget https://raw.githubusercontent.com/ngempeng/botol/main/slowdns.sh && chmod +x slowdns.sh && ./slowdns.sh
+wget https://raw.githubusercontent.com/ngempeng/jempol/main/slowdns.sh && chmod +x slowdns.sh && ./slowdns.sh
 
 ```
 
