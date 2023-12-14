@@ -97,14 +97,14 @@ clear
 clear
 #########################
 # USERNAME
-#rm -f /usr/bin/user
-#username=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $2}')
-#echo "$username" >/usr/bin/user
+rm -f /usr/bin/user
+username=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $2}')
+echo "$username" >/usr/bin/user
 # validity
-#rm -f /usr/bin/e
-#today=`date -d "0 days" +"%Y-%m-%d"`
-#valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $3}')
-#echo "$valid" >/usr/bin/e
+rm -f /usr/bin/e
+today=`date -d "0 days" +"%Y-%m-%d"`
+valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $3}')
+echo "$valid" >/usr/bin/e
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
 oid=$(cat /usr/bin/ver)
