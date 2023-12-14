@@ -106,41 +106,41 @@ clear
 #valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $3}')
 #echo "$valid" >/usr/bin/e
 # DETAIL ORDER
-#username=$(cat /usr/bin/user)
-#oid=$(cat /usr/bin/ver)
-#exp=$(cat /usr/bin/e)
-#clear
+username=$(cat /usr/bin/user)
+oid=$(cat /usr/bin/ver)
+exp=$(cat /usr/bin/e)
+clear
 # CERTIFICATE STATUS
-#d1=$(date -d "$valid" +%s)
-#d2=$(date -d "$today" +%s)
-#certifacate=$(((d1 - d2) / 86400))
+d1=$(date -d "$valid" +%s)
+d2=$(date -d "$today" +%s)
+certifacate=$(((d1 - d2) / 86400))
 # VPS Information
-#DATE=$(date +'%Y-%m-%d')
-#datediff() {
-#    d1=$(date -d "$1" +%s)
-#    d2=$(date -d "$2" +%s)
-#    echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
-#}
-#mai="datediff "$Exp" "$DATE""
-#
+DATE=$(date +'%Y-%m-%d')
+datediff() {
+    d1=$(date -d "$1" +%s)
+    d2=$(date -d "$2" +%s)
+    echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
+}
+mai="datediff "$Exp" "$DATE""
+
 # Status ExpiRED Active | Geo Project
-#Info="${GREEN}Active${NC}"
-#Error="${RED}Expired${NC}"
-#if [[ "$certifacate" -le "0" ]]; then
-#sts="${Error}"
-#echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
-#echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
-#echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
-#echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN https://wa.me/62818776240$NC"
-#echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/serverpremiumvip$NC"
-#echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
-#sleep 3
-#exit 1
-#else
-#sts="${Info}"
-#fi
-#echo -e "\e[32mloading...\e[0m"
-#clear
+Info="${GREEN}Active${NC}"
+Error="${RED}Expired${NC}"
+if [[ "$certifacate" -le "0" ]]; then
+sts="${Error}"
+echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
+echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
+echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/erfanrinanda$NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN https://t.me/ServerPremiumVIP$NC"
+echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
+sleep 3
+exit 1
+else
+sts="${Info}"
+fi
+echo -e "\e[32mloading...\e[0m"
+clear
 # REPO    
     REPO="https://raw.githubusercontent.com/ngempeng/jempol/master/"
 
@@ -221,19 +221,18 @@ function first_setup(){
     if [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "ubuntu" ]]; then
     echo "Setup Dependencies $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
     sudo apt update -y
-    #apt-get install --no-install-recommends software-properties-common
-    #add-apt-repository ppa:vbernat/haproxy-2.0 -y
-    #apt-get -y install haproxy=2.0.\*
-    apt install haproxy -y
+    apt-get install --no-install-recommends software-properties-common
+    add-apt-repository ppa:vbernat/haproxy-2.8 -y
+    apt-get -y install haproxy=2.8.\*
 elif [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "debian" ]]; then
     echo "Setup Dependencies For OS Is $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
     curl https://haproxy.debian.net/bernat.debian.org.gpg |
         gpg --dearmor >/usr/share/keyrings/haproxy.debian.net.gpg
     echo deb "[signed-by=/usr/share/keyrings/haproxy.debian.net.gpg]" \
-        http://haproxy.debian.net buster-backports-1.8 main \
+        http://haproxy.debian.net buster-backports-2.8 main \
         >/etc/apt/sources.list.d/haproxy.list
     sudo apt-get update
-    apt-get -y install haproxy
+    apt-get -y install haproxy=2.8.\*
 else
     echo -e " Your OS Is Not Supported ($(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g') )"
     exit 1
@@ -414,7 +413,7 @@ rm -rf /etc/vmess/.vmess.db
 #Instal Xray
 function install_xray() {
 clear
-    print_install "Core Xray 1.8.6 Latest Version"
+    print_install "Core Xray 1.8.4 Latest Version"
     # install xray
     #echo -e "[ ${green}INFO$NC ] Downloading & Installing xray core"
     domainSock_dir="/run/xray";! [ -d $domainSock_dir ] && mkdir  $domainSock_dir
@@ -423,7 +422,7 @@ clear
     # / / Ambil Xray Core Version Terbaru
 latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
 #bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version $latest_version
-bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.8.6
+bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.8.4
 
     # // Ambil Config Server
     wget -O /etc/xray/config.json "${REPO}limit/config.json" >/dev/null 2>&1
@@ -432,7 +431,7 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     #chmod +x /usr/local/bin/xray
     domain=$(cat /etc/xray/domain)
     IPVS=$(cat /etc/xray/ipvps)
-    print_success "Core Xray 1.8.6 Latest Version"
+    print_success "Core Xray 1.8.4 Latest Version"
     
     # Settings UP Nginix Server
     clear
