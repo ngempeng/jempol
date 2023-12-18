@@ -1,6 +1,6 @@
 [Unit]
 Description=WebSocket
-Documentation=https://t.me/serverpremiumvip
+Documentation=https://t.me/ServerPremiumVIP
 After=syslog.target network-online.target
 
 [Service]
