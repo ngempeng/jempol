@@ -193,8 +193,13 @@ function is_root() {
 # Buat direktori xray
 print_install "Membuat direktori xray"
     mkdir -p /etc/xray
-    curl -s ifconfig.me > /etc/xray/ipvps
+    curl -s ipinfo.io/ip?token=22bdf1094ea479 >>/etc/xray/ipvps
+    curl -s ipinfo.io/timezone?token=22bdf1094ea479 >>/etc/xray/timezone
+    curl -s ipinfo.io/city?token=22bdf1094ea479 >>/etc/xray/city
     touch /etc/xray/domain
+    touch /etc/xray/ipvps
+    touch /etc/xray/timezone
+    touch /etc/xray/city
     mkdir -p /var/log/xray
     chown www-data.www-data /var/log/xray
     chmod +x /var/log/xray
@@ -217,7 +222,7 @@ print_install "Membuat direktori xray"
     export OS_Name=$( cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g' )
     export Kernel=$( uname -r )
     export Arch=$( uname -m )
-    export IP=$( curl -s https://ipinfo.io/ip/ )
+    export IP=$( curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 )
 
 # Change Environment System
 function first_setup(){
@@ -452,8 +457,7 @@ function install_xray() {
     
     # Settings UP Nginix Server
     clear
-    curl -s ipinfo.io/city >>/etc/xray/city
-    curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
+    curl -s ipinfo.io/org?token=22bdf1094ea479 | cut -d " " -f 2-10 >>/etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "${REPO}limit/haproxy.cfg" >/dev/null 2>&1
     wget -O /etc/nginx/conf.d/xray.conf "${REPO}limit/xray.conf" >/dev/null 2>&1
