@@ -124,7 +124,7 @@ function cektrojan() {
     done
 }
 
-# Fungsi untuk mengecek dan menghapus user jika melebihi quota
+# Fungsi untuk mengecek dan menghapus user vmess jika melebihi quota
 function vmess() {
     while true; do
         sleep 30
@@ -154,7 +154,7 @@ function vmess() {
     done
 }
 
-# Fungsi untuk mengecek dan menghapus user jika melebihi quota
+# Fungsi untuk mengecek dan menghapus user vless jika melebihi quota
 function vless() {
     while true; do
         sleep 30
@@ -184,7 +184,7 @@ function vless() {
     done
 }
 
-# Fungsi untuk mengecek dan menghapus user jika melebihi quota
+# Fungsi untuk mengecek dan menghapus user trojan jika melebihi quota
 function trojan() {
     while true; do
         sleep 30
