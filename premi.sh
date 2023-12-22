@@ -435,6 +435,7 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     # Settings UP Nginix Server
     clear
     curl -s ipinfo.io/city >>/etc/xray/city
+    curl -s ipinfo.io/timezone >>/etc/xray/timezone
     curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/haproxy.cfg" >/dev/null 2>&1
