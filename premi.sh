@@ -36,8 +36,8 @@ clear;clear;clear
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo -e "  Welcome To SCRIPT ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e " This Will Quick Setup VPN Server On Your Server"
-echo -e "  Author : ${green} AMGEEKZ ® ${NC}${YELLOW}(${NC} ${green} AMGEEKZ ${NC}${YELLOW})${NC}"
-echo -e " © Recode By My Self AMGEEKZ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "  Author : ${green} Erfan RInanda ® ${NC}${YELLOW}(${NC} ${green} ErfanRinanda ${NC}${YELLOW})${NC}"
+echo -e " © Recode By My @erfanrinanda ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 2
@@ -767,10 +767,10 @@ print_success "Swap 1 G"
 function ins_Fail2ban(){
 clear
 print_install "Menginstall Fail2ban"
-#apt -y install fail2ban > /dev/null 2>&1
-#sudo systemctl enable --now fail2ban
-#/etc/init.d/fail2ban restart
-#/etc/init.d/fail2ban status
+apt -y install fail2ban > /dev/null 2>&1
+sudo systemctl enable --now fail2ban
+/etc/init.d/fail2ban restart
+/etc/init.d/fail2ban status
 
 # Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
