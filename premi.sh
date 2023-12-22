@@ -97,12 +97,12 @@ clear
 #########################
 # USERNAME
 rm -f /usr/bin/user
-username=$(curl -sS https://raw.githubusercontent.com/amgeekz/vip/master/izin | grep $MYIP | awk '{print $2}')
+username=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
 # validity
 rm -f /usr/bin/e
 today=`date -d "0 days" +"%Y-%m-%d"`
-valid=$(curl -sS https://raw.githubusercontent.com/amgeekz/vip/master/izin | grep $MYIP | awk '{print $3}')
+valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $3}')
 echo "$valid" >/usr/bin/e
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
@@ -141,7 +141,7 @@ fi
 echo -e "\e[32mloading...\e[0m"
 clear
 # REPO    
-    REPO="https://raw.githubusercontent.com/amgeekz/vip/master/"
+    REPO="https://raw.githubusercontent.com/ngempeng/jempol/main/"
 
 ####
 start=$(date +%s)
@@ -308,7 +308,7 @@ echo $host1 > /root/domain
 echo ""
 elif [[ $host == "2" ]]; then
 #install cf
-wget ${REPO}limit/cf.sh && chmod +x cf.sh && ./cf.sh
+wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/cf.sh && chmod +x cf.sh && ./cf.sh
 rm -f /root/cf.sh
 clear
 else
@@ -320,8 +320,8 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 function restart_system() {
-    USRSC=$(curl -sS https://raw.githubusercontent.com/amgeekz/vip/master/izin | grep $MYIP | awk '{print $2}')
-    EXPSC=$(curl -sS https://raw.githubusercontent.com/amgeekz/vip/master/izin | grep $MYIP | awk '{print $3}')
+    USRSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $2}')
+    EXPSC=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $3}')
     DATEVPS=$(date +'%d/%m/%Y')
     ISP=$(cat /etc/xray/isp)
     TIMEZONE=$(printf '%(%H:%M:%S)T')
@@ -424,9 +424,9 @@ latest_version="$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases |
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u www-data --version 1.8.4
  
     # // Ambil Config Server
-    wget -O /etc/xray/config.json "${REPO}limit/config.json" >/dev/null 2>&1
+    wget -O /etc/xray/config.json "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/config.json" >/dev/null 2>&1
     #wget -O /usr/local/bin/xray "${REPO}xray/xray.linux.64bit" >/dev/null 2>&1
-    wget -O /etc/systemd/system/runn.service "${REPO}limit/runn.service" >/dev/null 2>&1
+    wget -O /etc/systemd/system/runn.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/runn.service" >/dev/null 2>&1
     #chmod +x /usr/local/bin/xray
     domain=$(cat /etc/xray/domain)
     IPVS=$(cat /etc/xray/ipvps)
@@ -437,11 +437,11 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     curl -s ipinfo.io/city >>/etc/xray/city
     curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
-    wget -O /etc/haproxy/haproxy.cfg "${REPO}limit/haproxy.cfg" >/dev/null 2>&1
-    wget -O /etc/nginx/conf.d/xray.conf "${REPO}limit/xray.conf" >/dev/null 2>&1
+    wget -O /etc/haproxy/haproxy.cfg "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/haproxy.cfg" >/dev/null 2>&1
+    wget -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/xray.conf" >/dev/null 2>&1
     sed -i "s/xxx/${domain}/g" /etc/haproxy/haproxy.cfg
     sed -i "s/xxx/${domain}/g" /etc/nginx/conf.d/xray.conf
-    curl ${REPO}limit/nginx.conf > /etc/nginx/nginx.conf
+    curl https://raw.githubusercontent.com/ngempeng/jempol/main/limit/nginx.conf > /etc/nginx/nginx.conf
     
 cat /etc/xray/xray.crt /etc/xray/xray.key | tee /etc/haproxy/hap.pem
 
@@ -476,7 +476,7 @@ print_success "Konfigurasi Packet"
 function ssh(){
 clear
 print_install "Memasang Password SSH"
-    wget -O /etc/pam.d/common-password "${REPO}limit/password"
+    wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/password"
 chmod +x /etc/pam.d/common-password
 
     DEBIAN_FRONTEND=noninteractive dpkg-reconfigure keyboard-configuration
@@ -552,7 +552,7 @@ print_install "Memasang Service Limit Quota"
 wget raw.githubusercontent.com/amgeekz/vip/master/limit/limit.sh && chmod +x limit.sh && ./limit.sh
 
 cd
-wget -q -O /usr/bin/limit-ip "${REPO}limit/limit-ip"
+wget -q -O /usr/bin/limit-ip "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/limit-ip"
 chmod +x /usr/bin/*
 cd /usr/bin
 sed -i 's/\r//' limit-ip
@@ -614,11 +614,11 @@ systemctl enable trip
 #SERVICE VMESS
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
-wget -q -O /usr/local/kyt/udp-mini "${REPO}limit/udp-mini"
+wget -q -O /usr/local/kyt/udp-mini "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini"
 chmod +x /usr/local/kyt/udp-mini
-wget -q -O /etc/systemd/system/udp-mini-1.service "${REPO}limit/udp-mini-1.service"
-wget -q -O /etc/systemd/system/udp-mini-2.service "${REPO}limit/udp-mini-2.service"
-wget -q -O /etc/systemd/system/udp-mini-3.service "${REPO}limit/udp-mini-3.service"
+wget -q -O /etc/systemd/system/udp-mini-1.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-1.service"
+wget -q -O /etc/systemd/system/udp-mini-2.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-2.service"
+wget -q -O /etc/systemd/system/udp-mini-3.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/udp-mini-3.service"
 systemctl disable udp-mini-1
 systemctl stop udp-mini-1
 systemctl enable udp-mini-1
@@ -638,7 +638,7 @@ function ssh_slow(){
 clear
 # // Installing UDP Mini
 print_install "Memasang modul SlowDNS Server"
-    wget -q -O /tmp/nameserver "${REPO}limit/nameserver" >/dev/null 2>&1
+    wget -q -O /tmp/nameserver "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/nameserver" >/dev/null 2>&1
     chmod +x /tmp/nameserver
     bash /tmp/nameserver | tee /root/install.log
  print_success "SlowDNS"
@@ -648,7 +648,7 @@ clear
 function ins_SSHD(){
 clear
 print_install "Memasang SSHD"
-wget -q -O /etc/ssh/sshd_config "${REPO}limit/sshd" >/dev/null 2>&1
+wget -q -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/sshd" >/dev/null 2>&1
 chmod 700 /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 systemctl restart ssh
@@ -662,7 +662,7 @@ clear
 print_install "Menginstall Dropbear"
 # // Installing Dropbear
 apt-get install dropbear -y > /dev/null 2>&1
-wget -q -O /etc/default/dropbear "${REPO}limit/dropbear.conf"
+wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/dropbear.conf"
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
 /etc/init.d/dropbear status
@@ -697,7 +697,7 @@ function ins_openvpn(){
 clear
 print_install "Menginstall OpenVPN"
 #OpenVPN
-wget ${REPO}limit/openvpn &&  chmod +x openvpn && ./openvpn
+wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/openvpn &&  chmod +x openvpn && ./openvpn
 /etc/init.d/openvpn restart
 print_success "OpenVPN"
 }
@@ -708,7 +708,7 @@ print_install "Memasang Backup Server"
 #BackupOption
 apt install rclone -y
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "${REPO}limit/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/rclone.conf"
 #Install Wondershaper
 cd /bin
 git clone  https://github.com/magnific0/wondershaper.git
@@ -734,7 +734,7 @@ password jokerman77
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
-wget -q -O /etc/ipserver "${REPO}limit/ipserver" && bash /etc/ipserver
+wget -q -O /etc/ipserver "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ipserver" && bash /etc/ipserver
 print_success "Backup Server"
 }
 
@@ -760,7 +760,7 @@ gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | 
     chronyc sourcestats -v
     chronyc tracking -v
     
-    wget ${REPO}limit/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
+    wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
 print_success "Swap 1 G"
 }
 
@@ -786,16 +786,16 @@ echo "Banner /etc/kyt.txt" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
 
 # Ganti Banner
-wget -O /etc/kyt.txt "${REPO}limit/issue.net"
+wget -O /etc/kyt.txt "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/issue.net"
 print_success "Fail2ban"
 }
 
 function ins_epro(){
 clear
 print_install "Menginstall ePro WebSocket Proxy"
-    wget -O /usr/bin/ws "${REPO}limit/ws" >/dev/null 2>&1
-    wget -O /usr/bin/tun.conf "${REPO}limit/tun.conf" >/dev/null 2>&1
-    wget -O /etc/systemd/system/ws.service "${REPO}limit/ws.service" >/dev/null 2>&1
+    wget -O /usr/bin/ws "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ws" >/dev/null 2>&1
+    wget -O /usr/bin/tun.conf "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/tun.conf" >/dev/null 2>&1
+    wget -O /etc/systemd/system/ws.service "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ws.service" >/dev/null 2>&1
     chmod +x /etc/systemd/system/ws.service
     chmod +x /usr/bin/ws
     chmod 644 /usr/bin/tun.conf
@@ -806,7 +806,7 @@ systemctl start ws
 systemctl restart ws
 wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
 wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
-wget -O /usr/sbin/ftvpn "${REPO}limit/ftvpn" >/dev/null 2>&1
+wget -O /usr/sbin/ftvpn "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/ftvpn" >/dev/null 2>&1
 chmod +x /usr/sbin/ftvpn
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
@@ -868,7 +868,7 @@ print_success "All Packet"
 function menu(){
     clear
     print_install "Memasang Menu Packet"
-    wget ${REPO}limit/menu.zip
+    wget https://raw.githubusercontent.com/ngempeng/jempol/main/limit/menu.zip
     unzip menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
