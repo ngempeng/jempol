@@ -662,7 +662,7 @@ function ins_dropbear(){
 clear
 print_install "Menginstall Dropbear"
 # // Installing Dropbear
-apt-get install dropbear -y > /dev/null 2>&1
+apt-get install dropbear -y #> /dev/null 2>&1
 wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/dropbear.conf"
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
