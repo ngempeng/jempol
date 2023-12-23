@@ -130,8 +130,8 @@ sts="${Error}"
 echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
 echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
 echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
-echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN 6285649455626$NC"
-echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN amgeekzssh$NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN @ServerPremiumVIP$NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN @erfanrinanda$NC"
 echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
 sleep 3
 exit 1
@@ -550,7 +550,7 @@ print_success "Password SSH"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit Quota"
-wget raw.githubusercontent.com/amgeekz/vip/master/limit/limit.sh && chmod +x limit.sh && ./limit.sh
+wget raw.githubusercontent.com/ngempeng/jempol/master/limit/limit.sh && chmod +x limit.sh && ./limit.sh
 
 cd
 wget -q -O /usr/bin/limit-ip "https://raw.githubusercontent.com/ngempeng/jempol/main/limit/limit-ip"
