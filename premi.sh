@@ -25,7 +25,7 @@ URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
   # // Exporint IP AddressInformation
-export IP=$( curl -sS icanhazip.com )
+export IP=$(curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 )
 
 # // Clear Data
 clear
