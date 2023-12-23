@@ -1007,6 +1007,8 @@ rm -rf /root/*.sh
 rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
+systemctl stop openvpn.service
+systemctl disable openvpn.service
 #sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
 sudo hostnamectl set-hostname $username
