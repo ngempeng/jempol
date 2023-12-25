@@ -104,6 +104,10 @@ rm -f /usr/bin/e
 today=`date -d "0 days" +"%Y-%m-%d"`
 valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Aktivasi | grep $MYIP | awk '{print $3}')
 echo "$valid" >/usr/bin/e
+# version
+rm -f /usr/bin/ver
+version=$(curl https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $5}')
+echo "$version" >/usr/bin/ver
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
 #oid=$(cat /usr/bin/ver)
