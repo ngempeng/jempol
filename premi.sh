@@ -106,7 +106,7 @@ valid=$(curl -sS https://raw.githubusercontent.com/ServerPremiumVIP/VPS/main/Akt
 echo "$valid" >/usr/bin/e
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
-oid=$(cat /usr/bin/ver)
+#oid=$(cat /usr/bin/ver)
 exp=$(cat /usr/bin/e)
 clear
 # CERTIFICATE STATUS
