@@ -19,8 +19,8 @@ NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
 TIMES="10"
-CHATID="1989038292"
-KEY="6761110297:AAGgX5M9NPp9DNf-ZZ9QmOkb4OChqJqbRe8"
+CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
@@ -130,8 +130,8 @@ sts="${Error}"
 echo -e " $BLUE╭──────────────────────────────────────────────────────────╮${NC}"
 echo -e " $BLUE│$NC$RED    IP address not authorized by admin $NC"
 echo -e " $BLUE│$NC$RED    Please contact admin to rent this script $NC"
-echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN 6285649455626$NC"
-echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN amgeekzssh$NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Whatsapp :$NC $GREEN 0818776240$NC"
+echo -e " $BLUE│$NC$r • $NC$WHITE Telegram :$NC $GREEN ServerPremiumVIP$NC"
 echo -e " $BLUE╰──────────────────────────────────────────────────────────╯${NC}"
 sleep 3
 exit 1
@@ -185,7 +185,11 @@ function is_root() {
 # Buat direktori xray
 print_install "Membuat direktori xray"
     mkdir -p /etc/xray
-    curl -s ifconfig.me > /etc/xray/ipvps
+    mkdir -p /etc/xray
+    curl -s https://ipinfo.io/ip/?token=22bdf1094ea479 > /etc/xray/ipvps
+    curl -s ipinfo.io/city?token=22bdf1094ea479 >>/etc/xray/city
+    curl -s ipinfo.io/timezone?token=22bdf1094ea479 >>/etc/xray/timezone
+    curl -s ipinfo.io/org?token=22bdf1094ea479 | cut -d " " -f 2-10 >>/etc/xray/isp
     touch /etc/xray/domain
     mkdir -p /var/log/xray
     chown www-data.www-data /var/log/xray
@@ -221,7 +225,7 @@ function first_setup(){
     echo "Setup Dependencies $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
     sudo apt update -y
     apt-get install --no-install-recommends software-properties-common
-    add-apt-repository ppa:vbernat/haproxy-2.9 -y
+    add-apt-repository ppa:vbernat/haproxy-2.0 -y
     apt-get -y install haproxy=2.0.\*
 elif [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "debian" ]]; then
     echo "Setup Dependencies For OS Is $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
@@ -434,8 +438,6 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
     
     # Settings UP Nginix Server
     clear
-    curl -s ipinfo.io/city >>/etc/xray/city
-    curl -s ipinfo.io/org | cut -d " " -f 2-10 >>/etc/xray/isp
     print_install "Memasang Konfigurasi Packet"
     wget -O /etc/haproxy/haproxy.cfg "${REPO}limit/haproxy.cfg" >/dev/null 2>&1
     wget -O /etc/nginx/conf.d/xray.conf "${REPO}limit/xray.conf" >/dev/null 2>&1
@@ -728,9 +730,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user oceantestdigital@gmail.com
-from oceantestdigital@gmail.com
-password jokerman77 
+user serverkubackup@gmail.com
+from serverkubackup@gmail.com
+password serverkubackup 2023
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
@@ -739,38 +741,14 @@ print_success "Backup Server"
 }
 
 clear
-function ins_swab(){
-clear
-print_install "Memasang Swap 1 G"
-gotop_latest="$(curl -s https://api.github.com/repos/xxxserxxx/gotop/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/' | head -n 1)"
-    gotop_link="https://github.com/xxxserxxx/gotop/releases/download/v$gotop_latest/gotop_v"$gotop_latest"_linux_amd64.deb"
-    curl -sL "$gotop_link" -o /tmp/gotop.deb
-    dpkg -i /tmp/gotop.deb >/dev/null 2>&1
-    
-        # > Buat swap sebesar 1G
-    dd if=/dev/zero of=/swapfile bs=1024 count=1048576
-    mkswap /swapfile
-    chown root:root /swapfile
-    chmod 0600 /swapfile >/dev/null 2>&1
-    swapon /swapfile >/dev/null 2>&1
-    sed -i '$ i\/swapfile      swap swap   defaults    0 0' /etc/fstab
-
-    # > Singkronisasi jam
-    chronyd -q 'server 0.id.pool.ntp.org iburst'
-    chronyc sourcestats -v
-    chronyc tracking -v
-    
-    wget ${REPO}limit/bbr.sh &&  chmod +x bbr.sh && ./bbr.sh
-print_success "Swap 1 G"
-}
 
 function ins_Fail2ban(){
 clear
 print_install "Menginstall Fail2ban"
-#apt -y install fail2ban > /dev/null 2>&1
-#sudo systemctl enable --now fail2ban
-#/etc/init.d/fail2ban restart
-#/etc/init.d/fail2ban status
+apt -y install fail2ban > /dev/null 2>&1
+sudo systemctl enable --now fail2ban
+/etc/init.d/fail2ban restart
+/etc/init.d/fail2ban status
 
 # Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
