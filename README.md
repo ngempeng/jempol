@@ -8,7 +8,7 @@ apt install -y && apt update -y && apt upgrade -y && apt install lolcat -y && ge
 ### PERINTAH UPDATE
 ```
 
-wget https://scp.amgeekz.tech/update.sh && chmod +x update.sh && ./update.sh
+wget https://raw.githubusercontent.com/ngempeng/jempol/main/update.sh && chmod +x update.sh && ./update.sh
 
 ```
 
