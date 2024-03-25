@@ -16,8 +16,6 @@ YELL='\033[0;33m'
 # REPO    
     REPO="https://raw.githubusercontent.com/ngempeng/jempol/master/"
 
-####
-
 #Instal Xray
 function install_xray() {
 clear
