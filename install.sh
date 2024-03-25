@@ -13,6 +13,11 @@ grenbo="\e[92;1m"
 purple="\033[1;95m"
 YELL='\033[0;33m'
 
+# REPO    
+    REPO="https://raw.githubusercontent.com/amgeekz/vip/master/"
+
+####
+
 #Instal Xray
 function install_xray() {
 clear
