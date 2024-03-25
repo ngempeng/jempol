@@ -1,3 +1,18 @@
+#!/bin/bash
+
+# Define Colors
+y='\033[1;33m'
+BGX="\033[42m"
+CYAN="\033[96m"
+z="\033[96m"
+RED='\033[0;31m'
+NC='\033[0m'
+gray="\e[1;30m"
+Blue="\033[0;34m"
+green='\033[0;32m'
+grenbo="\e[92;1m"
+purple="\033[1;95m"
+YELL='\033[0;33m'
 #Instal Xray
 function install_xray() {
 clear
