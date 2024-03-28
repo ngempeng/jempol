@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Color Codes
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT='\033[0;37m'
+
+# Get current date
+today=$(date +%s)
+hariini=$(date +%d-%m-%Y)
+
+echo "Thank you for removing EXPIRED USERS"
+echo "--------------------------------------"
+
+# Create temporary file with user information
+awk -F: '$2 >= 0 {print $1, $8}' /etc/shadow | sed '/:$/d' > /tmp/expirelist.txt
+
+# Iterate through each user
+while IFS= read -r tuserval; do
+    username=$(echo "$tuserval" | cut -f1 -d:)
+    userexp=$(echo "$tuserval" | cut -f2 -d:)
+    
+    userexpireinseconds=$((userexp * 86400))
+    tglexp=$(date -d "@$userexpireinseconds")
+    
+    tgl=$(echo "$tglexp" | awk '{print $3}')
+    while [ ${#tgl} -lt 2 ]; do
+        tgl="0$tgl"
+    done
+    
+    while [ ${#username} -lt 15 ]; do
+        username="$username "
+    done
+    
+    bulantahun=$(echo "$tglexp" | awk '{print $2,$6}')
+    
+    echo "echo Expired- User: $username Expire at: $tgl $bulantahun" >> /usr/local/bin/alluser
+    
+    # Check if the user is expired
+    if [ "$userexpireinseconds" -ge "$today" ]; then
+        :
+    else
+        echo "echo Expired- Username: $username expired at: $tgl $bulantahun and removed: $hariini" >> /usr/local/bin/deleteduser
+        echo "Username $username that expired at $tgl $bulantahun removed from the VPS on $hariini"
+        userdel "$username"
+    fi
+done < /tmp/expirelist.txt
+
+echo " "
+echo "--------------------------------------"
+echo "Script ran successfully"
+echo -e "Back to the menu in 2 seconds..."
+sleep 2
+menu

@@ -1,0 +1,54 @@
+#!/bin/bash
+# Menu For Script
+# Edition : Stable Edition V15.7.1
+# Author  : Server Premium VIP
+# (C) Copyright 2023-2024
+# My Telegram : https://t.me/ServerPremiumVIP
+# Color
+GREEN='\e[32m'
+RED='\033[0;31m'
+BGBLUE='\e[1;44m'
+ORANGE='\033[0;33m'
+BLUE='\033[1;36m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+BG='\E[44;1;39m'
+NC='\033[0;37m'
+WHITE='\033[0;37m'
+r="\033[1;31m"  #REDTERANG
+# ==========================================
+# Getting
+export CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+export KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+export TIME="10"
+export URL="https://api.telegram.org/bot$KEY/sendMessage"
+clear
+# Getting
+ipsaya=$(cat /etc/xray/ipvps)
+data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
+date_list=$(date +"%Y-%m-%d" -d "$data_server")
+clear
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
+echo -e "                 MENU VMESS              $NC"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+echo -e "\033[1;93m┌──────────────────────────────────────────┐\033[0m"
+echo -e "  ${WHITE}1.${NC} \033[0;36m Creating Vmess Account WS/GRPC${NC}"
+echo -e "  ${WHITE}2.${NC} \033[0;36m Creating Trial Vmess Account WS/GRPC${NC}"
+echo -e "  ${WHITE}3.${NC} \033[0;36m Delete Vmess Account WS/GRPC${NC}"
+echo -e "  ${WHITE}4.${NC} \033[0;36m Renew Vmess Account${NC}"
+echo -e "  ${WHITE}5.${NC} \033[0;36m Check Vmess login Account${NC}"
+echo -e "  ${WHITE}6.${NC} \033[0;36m Check Config Vmess Account${NC}"
+echo -e "  ${WHITE}*.${NC} \033[0;36m Press Enter To Menu${NC}"
+echo -e "\033[1;93m└──────────────────────────────────────────┘\033[0m"
+echo -e ""
+read -p "Select From Options [ 1 - 6 ] : " menu
+case $menu in
+1) clear ; addvmess;;
+2) clear ; trialvmess ;;
+3) clear ; delvmess ;;
+4) clear ; renewvmess ;;
+5) clear ; cekvmess ;;
+6) clear ; uservmess ;;
+0) clear ; menu ;;
+*) clear ; menu ;;
+esac
