@@ -28,6 +28,7 @@ IPVPS=$(cat /etc/xray/ipvps)
 MYIP=$(cat /etc/xray/ipvps)
 domain=$(cat /etc/xray/domain)
 username=$(cat /usr/bin/user)
+premium=$(cat /etc/xray/premium)
 
 
 # Get System Information
@@ -43,15 +44,15 @@ SERONLINE=$(uptime -p | cut -d " " -f 2-10000)
 
 # username
 rm -f /usr/bin/user
-username=$(curl https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $2}')
+username=$(cat /etc/xray/premium | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
 # validity
 rm -f /usr/bin/e
-valid=$(curl https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $3}')
+valid=$(cat /etc/xray/premium | grep $MYIP | awk '{print $3}')
 echo "$valid" >/usr/bin/e
 # version
 rm -f /usr/bin/ver
-version=$(curl https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $5}')
+version=$(cat /etc/xray/premium | grep $MYIP | awk '{print $5}')
 echo "$version" >/usr/bin/ver
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
@@ -75,7 +76,7 @@ mai="datediff "$Exp" "$DATE""
 Info="${green}Active${NC}"
 Error="${RED}ExpiRED${NC}"
 today=`date -d "0 days" +"%Y-%m-%d"`
-Exp1=$(curl https://raw.githubusercontent.com/ServerPremiumVIP/VPS/master/Aktivasi | grep $MYIP | awk '{print $3}')
+Exp1=$(cat /etc/xray/premium | grep $MYIP | awk '{print $3}')
 if [[ $today < $Exp1 ]]; then
 sts="${Info}"
 else
@@ -180,7 +181,7 @@ printf " ${z}│${NC}\033[42m           Welcome To Script Server Premium VIP    
 printf " ${z}╰══════════════════════════════════════════════════════════╯${NC}\n"
 printf " ╭══════════════════════════════════════════════════════════╮${NC}\n"
 printf "  ${r}✅ ${NC}${Blue}System OS${NC}     ${Blue}=   ${NC}${MODEL}\n"
-printf "  ${r}✅ ${NC}${Blue}Cpu Info${NC}      ${Blue}=   ${NC}${CORE} Core / ${cpu_usage}%\n"
+printf "  ${r}✅ ${NC}${Blue}Cpu Info${NC}      ${Blue}=   ${NC}${CORE} Core / ${LOADCPU}% / ${cpu_usage}%\n"
 printf "  ${r}✅ ${NC}${Blue}Server RAM${NC}    ${Blue}=   ${NC}${USAGERAM} MB / ${RAM} MB\n"
 printf "  ${r}✅ ${NC}${Blue}Uptime Server${NC} ${Blue}=   ${NC}${SERONLINE}\n"
 printf "  ${r}✅ ${NC}${Blue}IP VPS${NC}        ${Blue}=   ${NC}${IPVPS}\n"
@@ -210,7 +211,7 @@ printf " │${NC} [${r}00${NC}]${grenbo} BACK TO EXIT MENU${NC} ${KANAN} \E[0m\0
 printf " ╰══════════════════════════════════════════════════════════╯${NC}\n"
 printf " ${z}╭══════════════════════════════════════════════════════════╮${NC}\n"
 printf " ${z}│$NC$Blue Version$NC       ${Blue}=$NC $oid                                  ${NC}${z}│${NC}\n"
-printf " ${z}│$NC$Blue User$NC          ${Blue}=$NC $username                                     ${NC}${z}│${NC}\n"
+printf " ${z}│$NC$Blue User$NC          ${Blue}=$NC $username                                      ${NC}${z}│${NC}\n"
 printf " ${z}│$NC$Blue Script Status$NC ${Blue}=$NC $sts                                   ${NC}${z}│${NC}\n"
 printf " ${z}│$NC$Blue Expiry script$NC $Blue=$grenbo $exp$NC ($r $certifacate ${NC}Days )                $NC${z}│$NC\n"
 printf " ${z}╰══════════════════════════════════════════════════════════╯${NC}\n"
@@ -224,7 +225,7 @@ case $opt in
 4 | 04) clear ; trojan ;;
 5 | 05) clear ; ss ;;
 6 | 06) clear ; m-trial ;;
-7 | 07) clear ; gotop ; echo ""
+7 | 07) clear ; top ; echo ""
 echo -e " ${GREEN} Back to menu in 1 sec ${NC}"
 sleep 1
 menu ;;
